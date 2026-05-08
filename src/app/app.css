@@ -1,0 +1,10 @@
+:host {
+  display: block;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.lp-heading {
+  font-family: 'Outfit', 'DM Sans', system-ui, sans-serif;
+}
