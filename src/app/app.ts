@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class App {
   /** Substitua pelo seu número internacional, sem + ou espaços (ex.: 5511999999999). */
-  readonly whatsappPhone = '5511999999999';
+  readonly whatsappPhone = '557191186831';
 
   readonly whatsappUrl =
     'https://wa.me/' +
