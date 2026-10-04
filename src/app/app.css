@@ -79,3 +79,17 @@
     transform: translateY(0) scale(1);
   }
 }
+
+.dm-launcher {
+  animation: dm-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes dm-pulse {
+  0%,
+  100% {
+    box-shadow: 0 12px 40px rgba(220, 38, 38, 0.45);
+  }
+  50% {
+    box-shadow: 0 12px 48px rgba(220, 38, 38, 0.7);
+  }
+}

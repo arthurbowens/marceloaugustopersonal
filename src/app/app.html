@@ -525,7 +525,7 @@
     </section>
   </main>
 
-  <footer class="border-t border-white/5 py-10 text-center text-sm text-neutral-500">
+  <footer class="border-t border-white/5 py-10 pb-28 text-center text-sm text-neutral-500 sm:pb-10">
     <p>
       © {{ currentYear }}
       <span class="text-neutral-400">Marcelo Augusto — consultoria online e presencial.</span>
@@ -542,13 +542,13 @@
   }
 
   <div
-    class="fixed bottom-5 right-4 z-[70] flex flex-col items-end gap-3 sm:bottom-6 sm:right-6"
+    class="fixed inset-x-3 bottom-3 z-[70] flex flex-col items-stretch gap-3 sm:inset-x-auto sm:bottom-6 sm:right-6 sm:items-end"
     aria-live="polite"
   >
     @if (chatOpen()) {
       <section
         id="assistente-marcelo"
-        class="dm-panel flex w-[min(100vw-2rem,380px)] flex-col overflow-hidden rounded-3xl border border-white/10 bg-neutral-950 shadow-2xl shadow-black/60 ring-1 ring-white/10"
+        class="dm-panel flex h-[min(78dvh,640px)] w-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-neutral-950 shadow-2xl shadow-black/60 ring-1 ring-white/10 sm:h-auto sm:w-[min(100vw-2rem,380px)]"
         role="dialog"
         aria-label="Assistente Marcelo Augusto"
       >
@@ -584,7 +584,7 @@
 
         <div
           #chatScroll
-          class="dm-scroll flex max-h-[min(52vh,420px)] min-h-[280px] flex-col gap-3 overflow-y-auto bg-[radial-gradient(ellipse_at_top,rgba(38,38,38,0.9),#0a0a0a)] px-3 py-4"
+          class="dm-scroll flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto bg-[radial-gradient(ellipse_at_top,rgb(38,38,38,0.9),#0a0a0a)] px-3 py-4 sm:max-h-[min(52vh,420px)] sm:min-h-[280px] sm:flex-none"
         >
           @for (msg of chatMessages(); track msg.id) {
             <div
@@ -690,38 +690,50 @@
       </section>
     }
 
-    <button
-      type="button"
-      class="group relative flex items-center gap-3 rounded-full bg-neutral-900 py-2 pl-2 pr-4 shadow-2xl shadow-black/50 ring-1 ring-white/15 transition hover:ring-red-500/50"
-      (click)="toggleChat()"
-      [attr.aria-expanded]="chatOpen()"
-      aria-controls="assistente-marcelo"
-      aria-label="Abrir assistente do Marcelo"
-    >
-      <span class="relative">
-        <img
-          src="/foto1.jpeg"
-          width="52"
-          height="52"
-          alt="Marcelo Augusto"
-          class="size-12 rounded-full object-cover ring-2 ring-red-500"
-        />
-        <span
-          class="absolute bottom-0 right-0 size-3.5 rounded-full border-2 border-neutral-900 bg-emerald-400"
-          aria-hidden="true"
-        ></span>
-        @if (!chatOpen()) {
+    @if (!chatOpen()) {
+      <button
+        type="button"
+        class="dm-launcher group relative mx-auto flex w-full max-w-md items-center gap-3 rounded-2xl border border-red-500/40 bg-red-600 px-3 py-3 shadow-[0_12px_40px_rgba(220,38,38,0.45)] transition hover:bg-red-500 sm:mx-0 sm:w-auto sm:rounded-full sm:py-2 sm:pl-2 sm:pr-5"
+        (click)="toggleChat()"
+        [attr.aria-expanded]="chatOpen()"
+        aria-controls="assistente-marcelo"
+        aria-label="Abrir assistente do Marcelo"
+      >
+        <span class="relative shrink-0">
+          <img
+            src="/foto1.jpeg"
+            width="52"
+            height="52"
+            alt="Marcelo Augusto"
+            class="size-12 rounded-full object-cover ring-2 ring-white/90"
+          />
           <span
-            class="absolute -right-0.5 -top-0.5 flex size-5 items-center justify-center rounded-full bg-red-600 text-[10px] font-bold text-white ring-2 ring-neutral-900"
+            class="absolute bottom-0 right-0 size-3.5 rounded-full border-2 border-red-600 bg-emerald-400"
+            aria-hidden="true"
+          ></span>
+          <span
+            class="absolute -right-0.5 -top-0.5 flex size-5 items-center justify-center rounded-full bg-black text-[10px] font-bold text-white ring-2 ring-red-600"
             aria-hidden="true"
             >1</span
           >
-        }
-      </span>
-      <span class="hidden text-left sm:block">
-        <span class="block text-sm font-semibold text-white">Assistente</span>
-        <span class="block text-xs text-neutral-400 group-hover:text-red-300">Fale com o Marcelo</span>
-      </span>
-    </button>
+        </span>
+        <span class="min-w-0 flex-1 text-left">
+          <span class="block text-sm font-bold text-white">Fale com o Marcelo</span>
+          <span class="block text-xs text-red-100">Resposta rápida · Assistente online</span>
+        </span>
+        <span
+          class="flex size-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-white"
+          aria-hidden="true"
+        >
+          <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.86 9.86 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+            />
+          </svg>
+        </span>
+      </button>
+    }
   </div>
 </div>
