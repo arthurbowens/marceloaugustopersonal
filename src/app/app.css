@@ -87,9 +87,9 @@
 @keyframes dm-pulse {
   0%,
   100% {
-    box-shadow: 0 12px 40px rgba(220, 38, 38, 0.45);
+    box-shadow: 0 8px 28px rgba(220, 38, 38, 0.45);
   }
   50% {
-    box-shadow: 0 12px 48px rgba(220, 38, 38, 0.7);
+    box-shadow: 0 8px 36px rgba(220, 38, 38, 0.65);
   }
 }
