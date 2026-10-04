@@ -531,4 +531,197 @@
       <span class="text-neutral-400">Marcelo Augusto — consultoria online e presencial.</span>
     </p>
   </footer>
+
+  <!-- Assistente IA — estilo Direct Instagram -->
+  @if (chatOpen()) {
+    <div
+      class="fixed inset-0 z-[60] bg-black/50 backdrop-blur-[2px] sm:bg-transparent sm:backdrop-blur-none sm:pointer-events-none"
+      (click)="closeChat()"
+      aria-hidden="true"
+    ></div>
+  }
+
+  <div
+    class="fixed bottom-5 right-4 z-[70] flex flex-col items-end gap-3 sm:bottom-6 sm:right-6"
+    aria-live="polite"
+  >
+    @if (chatOpen()) {
+      <section
+        id="assistente-marcelo"
+        class="dm-panel flex w-[min(100vw-2rem,380px)] flex-col overflow-hidden rounded-3xl border border-white/10 bg-neutral-950 shadow-2xl shadow-black/60 ring-1 ring-white/10"
+        role="dialog"
+        aria-label="Assistente Marcelo Augusto"
+      >
+        <header class="flex items-center gap-3 border-b border-white/10 bg-gradient-to-r from-neutral-900 to-black px-4 py-3">
+          <div class="relative shrink-0">
+            <img
+              src="/foto1.jpeg"
+              width="44"
+              height="44"
+              alt=""
+              class="size-11 rounded-full object-cover ring-2 ring-red-500/80"
+            />
+            <span
+              class="absolute bottom-0 right-0 size-3 rounded-full border-2 border-neutral-950 bg-emerald-400"
+              aria-hidden="true"
+            ></span>
+          </div>
+          <div class="min-w-0 flex-1">
+            <p class="truncate text-sm font-semibold text-white">Marcelo Augusto</p>
+            <p class="truncate text-xs text-emerald-400">Online agora · Assistente</p>
+          </div>
+          <button
+            type="button"
+            class="flex size-9 items-center justify-center rounded-full text-neutral-400 transition hover:bg-white/10 hover:text-white"
+            (click)="closeChat()"
+            aria-label="Fechar conversa"
+          >
+            <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </header>
+
+        <div
+          #chatScroll
+          class="dm-scroll flex max-h-[min(52vh,420px)] min-h-[280px] flex-col gap-3 overflow-y-auto bg-[radial-gradient(ellipse_at_top,rgba(38,38,38,0.9),#0a0a0a)] px-3 py-4"
+        >
+          @for (msg of chatMessages(); track msg.id) {
+            <div
+              class="flex gap-2"
+              [class.justify-end]="msg.role === 'user'"
+              [class.justify-start]="msg.role === 'bot'"
+            >
+              @if (msg.role === 'bot') {
+                <img
+                  src="/foto1.jpeg"
+                  width="28"
+                  height="28"
+                  alt=""
+                  class="mt-1 size-7 shrink-0 rounded-full object-cover"
+                />
+              }
+              <div
+                class="max-w-[82%] whitespace-pre-line rounded-2xl px-3.5 py-2.5 text-[13px] leading-relaxed shadow-sm"
+                [class.dm-bubble-bot]="msg.role === 'bot'"
+                [class.dm-bubble-user]="msg.role === 'user'"
+              >
+                {{ msg.text }}
+              </div>
+            </div>
+          }
+
+          @if (chatTyping()) {
+            <div class="flex items-center gap-2">
+              <img
+                src="/foto1.jpeg"
+                width="28"
+                height="28"
+                alt=""
+                class="size-7 rounded-full object-cover"
+              />
+              <div class="dm-bubble-bot flex items-center gap-1 rounded-2xl px-3.5 py-3">
+                <span class="dm-dot"></span>
+                <span class="dm-dot"></span>
+                <span class="dm-dot"></span>
+              </div>
+            </div>
+          }
+        </div>
+
+        <div class="border-t border-white/10 bg-black/80 px-3 py-3 backdrop-blur-md">
+          @if (chatStep() !== 'done' && !chatTyping()) {
+            <div class="mb-2 flex flex-wrap gap-2">
+              @for (opt of currentOptions(); track opt.value) {
+                <button
+                  type="button"
+                  class="rounded-full border border-red-500/40 bg-red-500/10 px-3 py-1.5 text-xs font-semibold text-red-300 transition hover:border-red-400 hover:bg-red-500/20 hover:text-white"
+                  (click)="selectOption(opt)"
+                >
+                  {{ opt.label }}
+                </button>
+              }
+            </div>
+
+            @if (showFreeText()) {
+              <form class="flex items-center gap-2" (submit)="$event.preventDefault(); submitFreeText()">
+                <input
+                  type="text"
+                  [value]="freeText()"
+                  (input)="onFreeTextInput($event)"
+                  placeholder="Ou escreva sua resposta…"
+                  class="min-w-0 flex-1 rounded-full border border-white/10 bg-neutral-900 px-3.5 py-2.5 text-sm text-white placeholder:text-neutral-500 outline-none focus:border-red-500/50"
+                  autocomplete="off"
+                />
+                <button
+                  type="submit"
+                  class="flex size-10 shrink-0 items-center justify-center rounded-full bg-red-600 text-white transition hover:bg-red-500 disabled:opacity-40"
+                  [disabled]="!freeText().trim()"
+                  aria-label="Enviar"
+                >
+                  <svg class="size-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z" />
+                  </svg>
+                </button>
+              </form>
+            }
+          }
+
+          @if (chatStep() === 'done' && !chatTyping()) {
+            <div class="flex flex-col gap-2">
+              <a
+                [href]="qualifiedWhatsappUrl()"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="lp-heading inline-flex w-full items-center justify-center gap-2 rounded-full bg-red-600 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-red-600/30 transition hover:bg-red-500"
+              >
+                Continuar no WhatsApp
+              </a>
+              <button
+                type="button"
+                class="text-xs font-medium text-neutral-500 transition hover:text-neutral-300"
+                (click)="restartChat()"
+              >
+                Refazer perguntas
+              </button>
+            </div>
+          }
+        </div>
+      </section>
+    }
+
+    <button
+      type="button"
+      class="group relative flex items-center gap-3 rounded-full bg-neutral-900 py-2 pl-2 pr-4 shadow-2xl shadow-black/50 ring-1 ring-white/15 transition hover:ring-red-500/50"
+      (click)="toggleChat()"
+      [attr.aria-expanded]="chatOpen()"
+      aria-controls="assistente-marcelo"
+      aria-label="Abrir assistente do Marcelo"
+    >
+      <span class="relative">
+        <img
+          src="/foto1.jpeg"
+          width="52"
+          height="52"
+          alt="Marcelo Augusto"
+          class="size-12 rounded-full object-cover ring-2 ring-red-500"
+        />
+        <span
+          class="absolute bottom-0 right-0 size-3.5 rounded-full border-2 border-neutral-900 bg-emerald-400"
+          aria-hidden="true"
+        ></span>
+        @if (!chatOpen()) {
+          <span
+            class="absolute -right-0.5 -top-0.5 flex size-5 items-center justify-center rounded-full bg-red-600 text-[10px] font-bold text-white ring-2 ring-neutral-900"
+            aria-hidden="true"
+            >1</span
+          >
+        }
+      </span>
+      <span class="hidden text-left sm:block">
+        <span class="block text-sm font-semibold text-white">Assistente</span>
+        <span class="block text-xs text-neutral-400 group-hover:text-red-300">Fale com o Marcelo</span>
+      </span>
+    </button>
+  </div>
 </div>
