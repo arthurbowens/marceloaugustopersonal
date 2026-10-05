@@ -18,7 +18,7 @@
       <a
         href="#"
         class="flex shrink-0 items-center rounded-xl bg-white p-2 ring-1 ring-white/20 transition hover:ring-red-500/40"
-        aria-label="Marcelo Augusto — início"
+        aria-label="Marcelo Augusto, início"
       >
         <img
           src="/logo.jpeg"
@@ -36,6 +36,7 @@
         <a href="#servicos" class="transition-colors hover:text-white">Serviços</a>
         <a href="#metodo" class="transition-colors hover:text-white">Método</a>
         <a href="#resultados" class="transition-colors hover:text-white">Resultados</a>
+        <a href="#diadia" class="transition-colors hover:text-white">Dia a dia</a>
         <a href="#contato" class="transition-colors hover:text-white">Contato</a>
       </nav>
       <a
@@ -74,7 +75,7 @@
             Na maioria das vezes, falta <strong class="font-semibold text-neutral-300">direção, estratégia e acompanhamento</strong> de verdade.
           </p>
           <p class="mt-4 text-lg leading-relaxed text-neutral-400">
-            Aqui, o treino é pensado em cima da sua rotina, do seu objetivo e da sua evolução real — sem protocolo genérico e sem fórmula pronta.
+            Aqui, o treino é pensado em cima da sua rotina, do seu objetivo e da sua evolução real, sem protocolo genérico e sem fórmula pronta.
           </p>
           <ul class="mt-8 flex flex-col gap-3 text-sm text-neutral-300 sm:text-base">
             <li class="flex items-start gap-3">
@@ -120,18 +121,14 @@
         </div>
         <div class="relative z-10 lg:justify-self-end">
           <div
-            class="relative overflow-hidden rounded-3xl border border-white/10 bg-neutral-900 shadow-2xl shadow-black/50 ring-1 ring-white/5"
+            class="relative rounded-3xl border border-white/10 bg-neutral-900 p-2 shadow-2xl shadow-black/50 ring-1 ring-white/5"
           >
-            <div
-              class="pointer-events-none absolute -inset-px rounded-3xl bg-gradient-to-br from-red-500/20 via-transparent to-transparent opacity-60"
-              aria-hidden="true"
-            ></div>
             <img
               src="/foto1.jpeg"
               width="900"
               height="1125"
-              alt="Marcelo Augusto — personal trainer em academia, pronto para atendimento 1 a 1"
-              class="aspect-[4/5] w-full max-w-lg object-cover object-center sm:max-w-none lg:max-w-md xl:max-w-lg"
+              alt="Marcelo Augusto, personal trainer em academia"
+              class="h-auto w-full max-w-lg rounded-2xl object-contain sm:max-w-none lg:max-w-md xl:max-w-lg"
               fetchpriority="high"
             />
           </div>
@@ -139,7 +136,7 @@
       </div>
     </section>
 
-    <!-- Sobre: foto2 -->
+    <!-- Sobre: foto2 + foto3 -->
     <section
       id="sobre"
       class="scroll-mt-24 border-t border-white/5 bg-neutral-900/40 py-20 sm:py-24"
@@ -209,21 +206,33 @@
         </div>
       </div>
 
-      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 mt-16 text-center">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 mt-16 text-center">
         <p class="text-xl font-medium leading-relaxed text-neutral-300 mb-10">
           Porque resultado não vem de motivação momentânea. <br/>
           <span class="text-2xl text-white font-bold">Vem de direção e consistência.</span>
         </p>
 
-        <div class="overflow-hidden rounded-3xl border border-white/10 shadow-2xl ring-1 ring-white/5 relative mx-auto bg-neutral-900">
-          <img
-            src="/foto2.jpeg"
-            width="900"
-            height="675"
-            alt="Marcelo Augusto em consultoria profissional"
-            class="w-full object-cover aspect-[4/3] sm:aspect-video"
-            loading="lazy"
-          />
+        <div class="grid gap-4 sm:grid-cols-2 sm:gap-5">
+          <div class="rounded-3xl border border-white/10 bg-neutral-900 p-2 shadow-2xl ring-1 ring-white/5">
+            <img
+              src="/foto2.jpeg"
+              width="900"
+              height="1125"
+              alt="Marcelo Augusto em consultoria profissional"
+              class="h-auto w-full rounded-2xl object-contain"
+              loading="lazy"
+            />
+          </div>
+          <div class="rounded-3xl border border-white/10 bg-neutral-900 p-2 shadow-2xl ring-1 ring-white/5">
+            <img
+              src="/foto3.jpeg"
+              width="900"
+              height="1125"
+              alt="Marcelo Augusto, personal trainer"
+              class="h-auto w-full rounded-2xl object-contain"
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -239,10 +248,11 @@
             Dê o play abaixo e entenda por que o método traz resultados consistentes.
           </p>
         </div>
-        <div class="relative mx-auto max-w-[280px] overflow-hidden rounded-3xl border border-white/10 bg-black shadow-2xl ring-1 ring-white/5 sm:max-w-xs">
+        <div class="relative mx-auto max-w-[280px] rounded-3xl border border-white/10 bg-neutral-900 p-2 shadow-2xl ring-1 ring-white/5 sm:max-w-xs">
           <video
-            class="w-full h-auto"
+            class="h-auto w-full rounded-2xl bg-black"
             controls
+            playsinline
             preload="metadata"
             poster="/capavideo.jpeg"
           >
@@ -292,7 +302,7 @@
             <span class="text-2xl font-bold text-neutral-600" aria-hidden="true">03</span>
             <h3 class="lp-heading mt-4 text-xl font-bold text-white">Ajustes e progressão contínua</h3>
             <p class="mt-3 flex-1 text-sm leading-relaxed text-neutral-400">
-              Seu corpo muda com o tempo — o planejamento também. Os ajustes são feitos constantemente para evitar estagnação e manter evolução real.
+              Seu corpo muda com o tempo e o planejamento também. Os ajustes são feitos constantemente para evitar estagnação e manter evolução real.
             </p>
           </article>
         </div>
@@ -368,7 +378,7 @@
             <blockquote class="text-lg font-medium leading-relaxed text-neutral-200">
               “Disciplina sem direção vira frustração.<br>Meu papel é transformar sua constância em resultado real.”
             </blockquote>
-            <p class="mt-6 text-sm font-semibold text-red-400">— Marcelo Augusto</p>
+            <p class="mt-6 text-sm font-semibold text-red-400">Marcelo Augusto</p>
           </div>
         </div>
         <div class="mt-14 mb-4 text-center">
@@ -396,59 +406,180 @@
           </p>
         </div>
 
-        <div class="mt-14 grid gap-8 md:grid-cols-2">
-          <!-- Frente -->
-          <div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-neutral-900 p-2 shadow-2xl transition hover:border-red-500/30">
-            <div class="grid grid-cols-2 gap-2">
-              <div class="relative overflow-hidden rounded-2xl">
-                <div class="absolute left-2 top-2 z-10 rounded-full bg-black/60 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur-md">Antes</div>
-                <img src="/antesfrente.jpeg" alt="Antes de frente" class="aspect-[3/4] w-full object-cover grayscale transition duration-500 group-hover:grayscale-0" loading="lazy" />
-              </div>
-              <div class="relative overflow-hidden rounded-2xl">
-                <div class="absolute left-2 top-2 z-10 rounded-full bg-red-600/80 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur-md">Depois</div>
-                <img src="/depoisfrente.jpeg" alt="Depois de frente" class="aspect-[3/4] w-full object-cover transition duration-500" loading="lazy" />
-              </div>
-            </div>
-            <div class="p-4 text-center">
-              <p class="text-sm font-medium text-neutral-300">Evolução Frontal</p>
+        <div class="relative mx-auto mt-12 max-w-3xl">
+          <p class="mb-4 text-center text-xs font-medium text-neutral-500 sm:hidden">
+            Deslize para o lado para ver mais resultados
+          </p>
+
+          <div class="relative">
+            <button
+              type="button"
+              class="absolute left-0 top-1/2 z-10 hidden size-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/70 text-white backdrop-blur-md transition hover:bg-red-600 disabled:pointer-events-none disabled:opacity-30 sm:flex"
+              (click)="prevResultado()"
+              [disabled]="resultadoIndex() === 0"
+              aria-label="Resultado anterior"
+            >
+              <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              class="absolute right-0 top-1/2 z-10 hidden size-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/70 text-white backdrop-blur-md transition hover:bg-red-600 disabled:pointer-events-none disabled:opacity-30 sm:flex"
+              (click)="nextResultado()"
+              [disabled]="resultadoIndex() === resultadoSlides.length - 1"
+              aria-label="Próximo resultado"
+            >
+              <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+
+            <div
+              #resultadosTrack
+              class="resultados-track flex snap-x snap-mandatory overflow-x-auto scroll-smooth"
+              (scroll)="onResultadosScroll($event)"
+              tabindex="0"
+              role="region"
+              aria-roledescription="carrossel"
+              aria-label="Resultados dos alunos"
+            >
+              @for (slide of resultadoSlides; track $index) {
+                <article
+                  class="w-full shrink-0 snap-center px-1 sm:px-10"
+                  [attr.aria-label]="slide.title + ', slide ' + ($index + 1) + ' de ' + resultadoSlides.length"
+                >
+                  <div class="rounded-3xl border border-white/10 bg-neutral-900 p-3 shadow-2xl sm:p-4">
+                    @if (slide.kind === 'compare') {
+                      <div class="grid grid-cols-2 items-stretch gap-3">
+                        <div class="resultado-frame relative flex aspect-[3/4] items-center justify-center rounded-2xl bg-black p-2">
+                          <span class="absolute left-2 top-2 z-10 rounded-full bg-black/70 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur-md">Antes</span>
+                          <img
+                            [src]="slide.before.src"
+                            [alt]="slide.before.alt"
+                            class="max-h-full max-w-full object-contain"
+                            loading="lazy"
+                          />
+                        </div>
+                        <div class="resultado-frame relative flex aspect-[3/4] items-center justify-center rounded-2xl bg-black p-2">
+                          <span class="absolute left-2 top-2 z-10 rounded-full bg-red-600/90 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur-md">Depois</span>
+                          <img
+                            [src]="slide.after.src"
+                            [alt]="slide.after.alt"
+                            class="max-h-full max-w-full object-contain"
+                            loading="lazy"
+                          />
+                        </div>
+                      </div>
+                    } @else {
+                      <div class="resultado-frame relative mx-auto flex aspect-[3/4] max-w-md items-center justify-center rounded-2xl bg-black p-2 sm:aspect-[4/5]">
+                        <img
+                          [src]="slide.src"
+                          [alt]="slide.alt"
+                          class="max-h-full max-w-full object-contain"
+                          loading="lazy"
+                        />
+                      </div>
+                    }
+                    <p class="mt-3 text-center text-sm font-medium text-neutral-300">
+                      {{ slide.title }}
+                    </p>
+                  </div>
+                </article>
+              }
             </div>
           </div>
 
-          <!-- Costas -->
-          <div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-neutral-900 p-2 shadow-2xl transition hover:border-red-500/30">
-            <div class="grid grid-cols-2 gap-2">
-              <div class="relative overflow-hidden rounded-2xl">
-                <div class="absolute left-2 top-2 z-10 rounded-full bg-black/60 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur-md">Antes</div>
-                <img src="/antescostas.jpeg" alt="Antes de costas" class="aspect-[3/4] w-full object-cover grayscale transition duration-500 group-hover:grayscale-0" loading="lazy" />
-              </div>
-              <div class="relative overflow-hidden rounded-2xl">
-                <div class="absolute left-2 top-2 z-10 rounded-full bg-red-600/80 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur-md">Depois</div>
-                <img src="/depoiscostas.jpeg" alt="Depois de costas" class="aspect-[3/4] w-full object-cover transition duration-500" loading="lazy" />
-              </div>
-            </div>
-            <div class="p-4 text-center">
-              <p class="text-sm font-medium text-neutral-300">Evolução Posterior</p>
-            </div>
+          <div class="mt-5 flex items-center justify-center gap-2" role="tablist" aria-label="Navegação dos resultados">
+            @for (slide of resultadoSlides; track $index) {
+              <button
+                type="button"
+                class="h-2 rounded-full transition-all"
+                [class.w-6]="resultadoIndex() === $index"
+                [class.bg-red-500]="resultadoIndex() === $index"
+                [class.w-2]="resultadoIndex() !== $index"
+                [class.bg-neutral-600]="resultadoIndex() !== $index"
+                (click)="goToResultado($index)"
+                [attr.aria-label]="'Ir para resultado ' + ($index + 1)"
+                [attr.aria-current]="resultadoIndex() === $index ? 'true' : null"
+              ></button>
+            }
           </div>
+          <p class="mt-3 text-center text-xs text-neutral-500">
+            {{ resultadoIndex() + 1 }} / {{ resultadoSlides.length }}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dia a Dia Team Marcelo Augusto -->
+    <section
+      id="diadia"
+      class="scroll-mt-24 border-t border-white/5 bg-black py-20 sm:py-24"
+      aria-labelledby="diadia-heading"
+    >
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <p class="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-red-500">
+            Bastidores reais
+          </p>
+          <h2
+            id="diadia-heading"
+            class="lp-heading text-3xl font-bold tracking-tight text-white sm:text-4xl"
+          >
+            Dia a dia Team Marcelo Augusto
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-neutral-400">
+            Não é só planilha. É presença, cobrança e construção diária no treino, na
+            conversa e na evolução de quem faz parte do time.
+          </p>
+          <p class="mt-3 text-base leading-relaxed text-neutral-500">
+            Aqui você vê o que acontece fora do post: check-ins, execução, ajustes e a
+            energia de quem treina com direção. Se você busca acompanhamento de verdade,
+            esse é o clima da consultoria.
+          </p>
         </div>
 
-        <!-- Mais Resultados -->
-        <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <div class="group overflow-hidden rounded-3xl border border-white/10 bg-neutral-900 p-2 shadow-2xl transition hover:border-red-500/30">
-            <div class="relative h-full overflow-hidden rounded-2xl">
-              <img src="/resultado1.png" alt="Evolução de aluno 1" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
-            </div>
-          </div>
-          <div class="group overflow-hidden rounded-3xl border border-white/10 bg-neutral-900 p-2 shadow-2xl transition hover:border-red-500/30">
-            <div class="relative h-full overflow-hidden rounded-2xl">
-              <img src="/resultado2.png" alt="Evolução de aluno 2" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
-            </div>
-          </div>
-          <div class="group overflow-hidden rounded-3xl border border-white/10 bg-neutral-900 p-2 shadow-2xl transition hover:border-red-500/30">
-            <div class="relative h-full overflow-hidden rounded-2xl">
-              <img src="/resultado3.png" alt="Evolução de aluno 3" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
-            </div>
-          </div>
+        <div class="mx-auto mt-12 max-w-[280px] rounded-3xl border border-white/10 bg-neutral-900 p-2 shadow-2xl ring-1 ring-white/5 sm:max-w-xs">
+          <video
+            class="h-auto w-full rounded-2xl bg-black"
+            controls
+            playsinline
+            preload="metadata"
+            poster="/diadia1.jpeg"
+          >
+            <source src="/diadiavideo.mp4" type="video/mp4" />
+            Seu navegador não possui suporte para visualização deste vídeo.
+          </video>
+        </div>
+
+        <div class="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+          @for (photo of diadiaPhotos; track photo.src) {
+            <figure
+              class="rounded-2xl border border-white/10 bg-neutral-900 p-2 shadow-lg ring-1 ring-white/5 transition hover:border-red-500/30"
+            >
+              <img
+                [src]="photo.src"
+                [alt]="photo.alt"
+                class="h-auto w-full object-contain"
+                loading="lazy"
+              />
+            </figure>
+          }
+        </div>
+
+        <div class="mx-auto mt-12 max-w-xl text-center">
+          <p class="text-base font-medium text-neutral-300">
+            Quer viver esse padrão de evolução no seu dia a dia?
+          </p>
+          <a
+            [href]="whatsappUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="lp-heading mt-6 inline-flex items-center justify-center rounded-full bg-red-600 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-red-600/30 transition hover:bg-red-500"
+          >
+            Entrar no time
+          </a>
         </div>
       </div>
     </section>
@@ -528,11 +659,11 @@
   <footer class="border-t border-white/5 py-10 pb-20 text-center text-sm text-neutral-500 sm:pb-10">
     <p>
       © {{ currentYear }}
-      <span class="text-neutral-400">Marcelo Augusto — consultoria online e presencial.</span>
+      <span class="text-neutral-400">Marcelo Augusto. Consultoria online e presencial.</span>
     </p>
   </footer>
 
-  <!-- Assistente IA — estilo Direct Instagram -->
+  <!-- Assistente IA, estilo Direct Instagram -->
   @if (chatOpen()) {
     <div
       class="fixed inset-0 z-[60] bg-black/50 backdrop-blur-[2px] sm:bg-transparent sm:backdrop-blur-none sm:pointer-events-none"
@@ -542,17 +673,17 @@
   }
 
   <div
-    class="fixed bottom-4 right-3 z-[70] flex flex-col items-end gap-3 sm:bottom-6 sm:right-6"
+    class="fixed inset-x-3 bottom-3 z-[70] flex flex-col items-stretch gap-3 sm:inset-x-auto sm:bottom-6 sm:right-6 sm:items-end"
     aria-live="polite"
   >
     @if (chatOpen()) {
       <section
         id="assistente-marcelo"
-        class="dm-panel flex h-[min(70dvh,560px)] w-[min(100vw-1.5rem,360px)] flex-col overflow-hidden rounded-3xl border border-white/10 bg-neutral-950 shadow-2xl shadow-black/60 ring-1 ring-white/10"
+        class="dm-panel flex max-h-[min(82dvh,640px)] w-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-neutral-950 shadow-2xl shadow-black/60 ring-1 ring-white/10 sm:w-[380px]"
         role="dialog"
         aria-label="Assistente Marcelo Augusto"
       >
-        <header class="flex items-center gap-3 border-b border-white/10 bg-gradient-to-r from-neutral-900 to-black px-4 py-3">
+        <header class="flex shrink-0 items-center gap-3 border-b border-white/10 bg-gradient-to-r from-neutral-900 to-black px-4 py-3">
           <div class="relative shrink-0">
             <img
               src="/foto1.jpeg"
@@ -584,58 +715,63 @@
 
         <div
           #chatScroll
-          class="dm-scroll flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto bg-[radial-gradient(ellipse_at_top,rgb(38,38,38,0.9),#0a0a0a)] px-3 py-4 sm:max-h-[min(52vh,420px)] sm:min-h-[280px] sm:flex-none"
+          class="dm-scroll min-h-0 flex-1 overflow-y-auto bg-[radial-gradient(ellipse_at_top,rgb(38,38,38,0.9),#0a0a0a)] px-3 py-4"
         >
-          @for (msg of chatMessages(); track msg.id) {
-            <div
-              class="flex gap-2"
-              [class.justify-end]="msg.role === 'user'"
-              [class.justify-start]="msg.role === 'bot'"
-            >
-              @if (msg.role === 'bot') {
+          <div class="flex flex-col gap-3">
+            @for (msg of chatMessages(); track msg.id) {
+              <div
+                class="flex gap-2"
+                [class.justify-end]="msg.role === 'user'"
+                [class.justify-start]="msg.role === 'bot'"
+              >
+                @if (msg.role === 'bot') {
+                  <img
+                    src="/foto1.jpeg"
+                    width="28"
+                    height="28"
+                    alt=""
+                    class="mt-1 size-7 shrink-0 rounded-full object-cover"
+                  />
+                }
+                <div
+                  class="max-w-[85%] break-words whitespace-pre-line rounded-2xl px-3.5 py-2.5 text-[13px] leading-relaxed shadow-sm"
+                  [class.dm-bubble-bot]="msg.role === 'bot'"
+                  [class.dm-bubble-user]="msg.role === 'user'"
+                >
+                  {{ msg.text }}
+                </div>
+              </div>
+            }
+
+            @if (chatTyping()) {
+              <div class="flex items-center gap-2">
                 <img
                   src="/foto1.jpeg"
                   width="28"
                   height="28"
                   alt=""
-                  class="mt-1 size-7 shrink-0 rounded-full object-cover"
+                  class="size-7 rounded-full object-cover"
                 />
-              }
-              <div
-                class="max-w-[82%] whitespace-pre-line rounded-2xl px-3.5 py-2.5 text-[13px] leading-relaxed shadow-sm"
-                [class.dm-bubble-bot]="msg.role === 'bot'"
-                [class.dm-bubble-user]="msg.role === 'user'"
-              >
-                {{ msg.text }}
+                <div class="dm-bubble-bot flex items-center gap-1 rounded-2xl px-3.5 py-3">
+                  <span class="dm-dot"></span>
+                  <span class="dm-dot"></span>
+                  <span class="dm-dot"></span>
+                </div>
               </div>
-            </div>
-          }
-
-          @if (chatTyping()) {
-            <div class="flex items-center gap-2">
-              <img
-                src="/foto1.jpeg"
-                width="28"
-                height="28"
-                alt=""
-                class="size-7 rounded-full object-cover"
-              />
-              <div class="dm-bubble-bot flex items-center gap-1 rounded-2xl px-3.5 py-3">
-                <span class="dm-dot"></span>
-                <span class="dm-dot"></span>
-                <span class="dm-dot"></span>
-              </div>
-            </div>
-          }
+            }
+          </div>
         </div>
 
-        <div class="border-t border-white/10 bg-black/80 px-3 py-3 backdrop-blur-md">
+        <div class="shrink-0 border-t border-white/10 bg-black px-3 py-3">
           @if (chatStep() !== 'done' && !chatTyping()) {
-            <div class="mb-2 flex flex-wrap gap-2">
+            <p class="mb-2 text-[11px] font-medium text-neutral-500">
+              Escolha uma opção:
+            </p>
+            <div class="flex max-h-[40vh] flex-col gap-2 overflow-y-auto">
               @for (opt of currentOptions(); track opt.value) {
                 <button
                   type="button"
-                  class="rounded-full border border-red-500/40 bg-red-500/10 px-3 py-1.5 text-xs font-semibold text-red-300 transition hover:border-red-400 hover:bg-red-500/20 hover:text-white"
+                  class="w-full rounded-xl border border-red-500/40 bg-red-500/10 px-3 py-3 text-left text-sm font-semibold text-red-200 transition hover:border-red-400 hover:bg-red-500/20 hover:text-white"
                   (click)="selectOption(opt)"
                 >
                   {{ opt.label }}
@@ -644,12 +780,12 @@
             </div>
 
             @if (showFreeText()) {
-              <form class="flex items-center gap-2" (submit)="$event.preventDefault(); submitFreeText()">
+              <form class="mt-2 flex items-center gap-2" (submit)="$event.preventDefault(); submitFreeText()">
                 <input
                   type="text"
                   [value]="freeText()"
                   (input)="onFreeTextInput($event)"
-                  placeholder="Ou escreva sua resposta…"
+                  [placeholder]="freeTextPlaceholder()"
                   class="min-w-0 flex-1 rounded-full border border-white/10 bg-neutral-900 px-3.5 py-2.5 text-sm text-white placeholder:text-neutral-500 outline-none focus:border-red-500/50"
                   autocomplete="off"
                 />
@@ -675,14 +811,14 @@
                 rel="noopener noreferrer"
                 class="lp-heading inline-flex w-full items-center justify-center gap-2 rounded-full bg-red-600 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-red-600/30 transition hover:bg-red-500"
               >
-                Continuar no WhatsApp
+                Quero saber as opções
               </a>
               <button
                 type="button"
                 class="text-xs font-medium text-neutral-500 transition hover:text-neutral-300"
                 (click)="restartChat()"
               >
-                Refazer perguntas
+                Refazer conversa
               </button>
             </div>
           }
@@ -693,7 +829,7 @@
     @if (!chatOpen()) {
       <button
         type="button"
-        class="dm-launcher group relative flex items-center gap-2.5 rounded-full border border-red-500/50 bg-red-600 py-1.5 pl-1.5 pr-3.5 shadow-[0_8px_28px_rgba(220,38,38,0.45)] transition hover:bg-red-500"
+        class="dm-launcher group relative ml-auto flex items-center gap-2.5 rounded-full border border-red-500/50 bg-red-600 py-1.5 pl-1.5 pr-3.5 shadow-[0_8px_28px_rgba(220,38,38,0.45)] transition hover:bg-red-500"
         (click)="toggleChat()"
         [attr.aria-expanded]="chatOpen()"
         aria-controls="assistente-marcelo"

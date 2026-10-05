@@ -84,6 +84,29 @@
   animation: dm-pulse 2.4s ease-in-out infinite;
 }
 
+.resultados-track {
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.resultados-track::-webkit-scrollbar {
+  display: none;
+}
+
+.resultados-track:focus-visible {
+  outline: 2px solid #dc2626;
+  outline-offset: 4px;
+}
+
+.resultado-frame img {
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
 @keyframes dm-pulse {
   0%,
   100% {

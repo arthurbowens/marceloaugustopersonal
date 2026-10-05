@@ -13,7 +13,7 @@ interface QuickOption {
   value: string;
 }
 
-type ChatStep = 'objetivo' | 'local' | 'plano' | 'done';
+type ChatStep = 'objetivo' | 'dificuldade' | 'local' | 'done';
 
 @Component({
   selector: 'app-root',
@@ -30,15 +30,56 @@ export class App {
     '?text=' +
     encodeURIComponent(
       'Olá, Marcelo! Quero saber sobre consultoria.\n' +
-        'Objetivo: \nTreino (dias/semana): \nOnline ou presencial: ',
+        'Objetivo: \nO que mais dificulta: ',
     );
 
   /** Atualize com o e-mail real de contato. */
   readonly emailContactUrl =
     'mailto:contato@exemplo.com?subject=' +
-    encodeURIComponent('Consultoria — Marcelo Augusto');
+    encodeURIComponent('Consultoria Marcelo Augusto');
 
   readonly currentYear = new Date().getFullYear();
+
+  readonly diadiaPhotos = [1, 2, 3, 4, 5, 6, 7, 8].map((n) => ({
+    src: `/diadia${n}.jpeg`,
+    alt: `Dia a dia Team Marcelo Augusto, momento ${n}`,
+  }));
+
+  readonly resultadoSlides = [
+    {
+      kind: 'compare' as const,
+      title: 'Evolução frontal',
+      before: { src: '/antesfrente.jpeg', alt: 'Antes de frente' },
+      after: { src: '/depoisfrente.jpeg', alt: 'Depois de frente' },
+    },
+    {
+      kind: 'compare' as const,
+      title: 'Evolução posterior',
+      before: { src: '/antescostas.jpeg', alt: 'Antes de costas' },
+      after: { src: '/depoiscostas.jpeg', alt: 'Depois de costas' },
+    },
+    {
+      kind: 'single' as const,
+      title: 'Resultado do aluno',
+      src: '/resultado1.png',
+      alt: 'Evolução de aluno 1',
+    },
+    {
+      kind: 'single' as const,
+      title: 'Resultado do aluno',
+      src: '/resultado2.png',
+      alt: 'Evolução de aluno 2',
+    },
+    {
+      kind: 'single' as const,
+      title: 'Resultado do aluno',
+      src: '/resultado3.png',
+      alt: 'Evolução de aluno 3',
+    },
+  ];
+
+  readonly resultadoIndex = signal(0);
+  readonly resultadosTrack = viewChild<ElementRef<HTMLElement>>('resultadosTrack');
 
   readonly chatOpen = signal(false);
   readonly chatTyping = signal(false);
@@ -46,8 +87,8 @@ export class App {
   readonly chatMessages = signal<ChatMessage[]>([]);
   readonly chatAnswers = signal({
     objetivo: '',
+    dificuldade: '',
     local: '',
-    plano: '',
   });
   readonly freeText = signal('');
 
@@ -63,42 +104,50 @@ export class App {
     { label: 'Performance', value: 'Performance' },
   ];
 
-  readonly localOptions: QuickOption[] = [
-    { label: 'Academia', value: 'Academia' },
-    { label: 'Em casa', value: 'Em casa' },
-    { label: 'Os dois', value: 'Academia e em casa' },
+  readonly dificuldadeOptions: QuickOption[] = [
+    { label: 'Sem planejamento específico', value: 'Treino sem um planejamento específico' },
+    { label: 'Dificuldade para evoluir as cargas', value: 'Dificuldade para evoluir as cargas' },
+    { label: 'Falta de constância', value: 'Falta de constância' },
+    { label: 'Dúvida se o treino está adequado', value: 'Dúvida se o treino está adequado ao objetivo' },
   ];
 
-  readonly planoOptions: QuickOption[] = [
-    { label: 'Sim, tenho os dois', value: 'Sim — plano alimentar e de treino' },
-    { label: 'Só treino', value: 'Só treino' },
-    { label: 'Só alimentação', value: 'Só alimentação' },
-    { label: 'Ainda não', value: 'Ainda não sigo nenhum plano' },
+  readonly localOptions: QuickOption[] = [
+    { label: 'Treino em academia', value: 'Academia' },
+    { label: 'Treino em casa', value: 'Em casa' },
+    { label: 'Academia e em casa', value: 'Academia e em casa' },
   ];
 
   readonly currentOptions = computed(() => {
     switch (this.chatStep()) {
       case 'objetivo':
         return this.objetivoOptions;
+      case 'dificuldade':
+        return this.dificuldadeOptions;
       case 'local':
         return this.localOptions;
-      case 'plano':
-        return this.planoOptions;
       default:
         return [];
     }
   });
 
-  readonly showFreeText = computed(() => this.chatStep() === 'plano');
+  readonly showFreeText = computed(
+    () => this.chatStep() === 'objetivo' || this.chatStep() === 'dificuldade',
+  );
+
+  readonly freeTextPlaceholder = computed(() =>
+    this.chatStep() === 'objetivo'
+      ? 'Ou um objetivo específico…'
+      : 'Ou escreva com suas palavras…',
+  );
 
   readonly qualifiedWhatsappUrl = computed(() => {
     const a = this.chatAnswers();
     const text =
-      `Olá, Marcelo! Falei com o assistente do site e quero iniciar a consultoria.\n\n` +
-      `1️⃣ Objetivo: ${a.objetivo || '—'}\n` +
-      `2️⃣ Treino: ${a.local || '—'}\n` +
-      `3️⃣ Plano atual: ${a.plano || '—'}\n\n` +
-      `Pode me explicar os próximos passos?`;
+      `Olá, Marcelo! Falei com a assistente do site e quero saber como funciona a consultoria.\n\n` +
+      `1️⃣ Objetivo: ${a.objetivo || '-'}\n` +
+      `2️⃣ O que mais dificulta: ${a.dificuldade || '-'}\n` +
+      `3️⃣ Treino: ${a.local || '-'}\n\n` +
+      `Pode me explicar as opções de acompanhamento?`;
     return `https://wa.me/${this.whatsappPhone}?text=${encodeURIComponent(text)}`;
   });
 
@@ -123,6 +172,32 @@ export class App {
     this.chatOpen.set(false);
   }
 
+  onResultadosScroll(event: Event): void {
+    const el = event.target as HTMLElement;
+    const width = el.clientWidth;
+    if (!width) return;
+    const index = Math.round(el.scrollLeft / width);
+    this.resultadoIndex.set(
+      Math.max(0, Math.min(index, this.resultadoSlides.length - 1)),
+    );
+  }
+
+  goToResultado(index: number): void {
+    const track = this.resultadosTrack()?.nativeElement;
+    if (!track) return;
+    const clamped = Math.max(0, Math.min(index, this.resultadoSlides.length - 1));
+    this.resultadoIndex.set(clamped);
+    track.scrollTo({ left: clamped * track.clientWidth, behavior: 'smooth' });
+  }
+
+  prevResultado(): void {
+    this.goToResultado(this.resultadoIndex() - 1);
+  }
+
+  nextResultado(): void {
+    this.goToResultado(this.resultadoIndex() + 1);
+  }
+
   async selectOption(option: QuickOption): Promise<void> {
     if (this.chatTyping()) return;
     const step = this.chatStep();
@@ -130,12 +205,12 @@ export class App {
 
     if (step === 'objetivo') {
       this.chatAnswers.update((a) => ({ ...a, objetivo: option.value }));
+      await this.askDificuldade();
+    } else if (step === 'dificuldade') {
+      this.chatAnswers.update((a) => ({ ...a, dificuldade: option.value }));
       await this.askLocal();
     } else if (step === 'local') {
       this.chatAnswers.update((a) => ({ ...a, local: option.value }));
-      await this.askPlano();
-    } else if (step === 'plano') {
-      this.chatAnswers.update((a) => ({ ...a, plano: option.value }));
       await this.finishChat();
     }
   }
@@ -145,18 +220,26 @@ export class App {
   }
 
   async submitFreeText(): Promise<void> {
-    if (this.chatTyping() || this.chatStep() !== 'plano') return;
+    if (this.chatTyping()) return;
+    const step = this.chatStep();
+    if (step !== 'objetivo' && step !== 'dificuldade') return;
     const text = this.freeText().trim();
     if (!text) return;
     this.freeText.set('');
     this.pushUser(text);
-    this.chatAnswers.update((a) => ({ ...a, plano: text }));
-    await this.finishChat();
+
+    if (step === 'objetivo') {
+      this.chatAnswers.update((a) => ({ ...a, objetivo: text }));
+      await this.askDificuldade();
+    } else {
+      this.chatAnswers.update((a) => ({ ...a, dificuldade: text }));
+      await this.askLocal();
+    }
   }
 
   restartChat(): void {
     this.chatMessages.set([]);
-    this.chatAnswers.set({ objetivo: '', local: '', plano: '' });
+    this.chatAnswers.set({ objetivo: '', dificuldade: '', local: '' });
     this.chatStep.set('objetivo');
     this.freeText.set('');
     this.chatBooted = true;
@@ -166,42 +249,34 @@ export class App {
   private async bootChat(): Promise<void> {
     this.chatStep.set('objetivo');
     await this.botSay(
-      'Oi! 👋 Sou o assistente do Marcelo Augusto.\n\n' +
-        'Para te direcionar da melhor forma para a consultoria ideal, me conta rapidinho:',
+      'Olá! Seja bem-vindo(a). 👋\n\n' +
+        'Aqui é a assistente do Personal Trainer Marcelo Augusto.\n\n' +
+        '1️⃣ Qual é o seu principal objetivo no momento?',
     );
+  }
+
+  private async askDificuldade(): Promise<void> {
+    this.chatStep.set('dificuldade');
+    this.freeText.set('');
     await this.botSay(
-      '1️⃣ Qual é o seu principal objetivo no momento?\n\n' +
-        '• Emagrecimento\n• Hipertrofia\n• Definição\n• Performance',
+      'Perfeito! 👊\n\n' +
+        '2️⃣ O que mais está dificultando chegar nesse resultado?\n\n' +
+        'A consultoria monta estratégia para você e sua rotina, não só uma ficha genérica.',
     );
   }
 
   private async askLocal(): Promise<void> {
     this.chatStep.set('local');
-    await this.botSay('Perfeito! 💪\n\n2️⃣ Você treina em academia ou em casa?');
-  }
-
-  private async askPlano(): Promise<void> {
-    this.chatStep.set('plano');
-    await this.botSay(
-      'Show! Última pergunta:\n\n' +
-        '3️⃣ Já segue algum plano alimentar ou de treinamento atualmente?\n\n' +
-        'Pode escolher uma opção ou escrever com suas palavras.',
-    );
+    this.freeText.set('');
+    await this.botSay('3️⃣ Você treina em academia ou em casa?');
   }
 
   private async finishChat(): Promise<void> {
     this.chatStep.set('done');
-    const a = this.chatAnswers();
     await this.botSay(
-      `Anotei aqui:\n\n` +
-        `🎯 Objetivo: ${a.objetivo}\n` +
-        `🏋️ Treino: ${a.local}\n` +
-        `📋 Plano atual: ${a.plano}`,
-    );
-    await this.botSay(
-      'Assim conseguimos entender melhor seu momento e te explicar como funciona a consultoria do Marcelo e quais são os próximos passos para iniciar sua evolução. 🚀\n\n' +
-        'Na consultoria você recebe diagnóstico, plano personalizado e acompanhamento próximo — online ou presencial.\n\n' +
-        'Toque abaixo para continuar no WhatsApp com o Marcelo. Suas respostas já vão na mensagem.',
+      'Pelo que você me falou, o Marcelo consegue te ajudar bastante! 👊\n\n' +
+        'Treino individualizado + acompanhamento com ajustes durante o processo.\n\n' +
+        'Toque abaixo para ele te explicar a consultoria e as opções. 🔥',
     );
   }
 
