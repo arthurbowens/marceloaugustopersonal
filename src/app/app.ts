@@ -40,10 +40,16 @@ export class App {
 
   readonly currentYear = new Date().getFullYear();
 
-  readonly diadiaPhotos = [1, 2, 3, 4, 5, 6, 7, 8].map((n) => ({
-    src: `/diadia${n}.jpeg`,
-    alt: `Dia a dia Team Marcelo Augusto, momento ${n}`,
-  }));
+  readonly diadiaPhotos = [
+    { src: '/diadia1.jpeg', alt: 'Dia a dia Team Marcelo Augusto, momento 1', wide: false },
+    { src: '/diadia2.jpeg', alt: 'Dia a dia Team Marcelo Augusto, momento 2', wide: false },
+    { src: '/diadia3.jpeg', alt: 'Dia a dia Team Marcelo Augusto, momento 3', wide: false },
+    { src: '/diadia4.jpeg', alt: 'Dia a dia Team Marcelo Augusto, acompanhamento no treino', wide: true },
+    { src: '/diadia5.jpeg', alt: 'Dia a dia Team Marcelo Augusto, momento 5', wide: false },
+    { src: '/diadia6.jpeg', alt: 'Dia a dia Team Marcelo Augusto, momento 6', wide: false },
+    { src: '/diadia7.jpeg', alt: 'Dia a dia Team Marcelo Augusto, momento 7', wide: false },
+    { src: '/diadia8.jpeg', alt: 'Dia a dia Team Marcelo Augusto, momento 8', wide: false },
+  ];
 
   readonly resultadoSlides = [
     {
@@ -174,7 +180,8 @@ export class App {
 
   onResultadosScroll(event: Event): void {
     const el = event.target as HTMLElement;
-    const width = el.clientWidth;
+    const slide = el.querySelector('.resultado-slide') as HTMLElement | null;
+    const width = slide?.offsetWidth || el.clientWidth;
     if (!width) return;
     const index = Math.round(el.scrollLeft / width);
     this.resultadoIndex.set(
@@ -186,8 +193,10 @@ export class App {
     const track = this.resultadosTrack()?.nativeElement;
     if (!track) return;
     const clamped = Math.max(0, Math.min(index, this.resultadoSlides.length - 1));
+    const slide = track.querySelector('.resultado-slide') as HTMLElement | null;
+    const width = slide?.offsetWidth || track.clientWidth;
     this.resultadoIndex.set(clamped);
-    track.scrollTo({ left: clamped * track.clientWidth, behavior: 'smooth' });
+    track.scrollTo({ left: clamped * width, behavior: 'smooth' });
   }
 
   prevResultado(): void {
